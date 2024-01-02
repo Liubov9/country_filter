@@ -1,0 +1,128 @@
+.container {
+  max-width: 1335px;
+  width: 100%;
+  margin: auto;
+  padding: 5rem 2rem;
+
+  .title {
+    font-size: 20px;
+  }
+
+  .table-body {
+    margin-top: 5rem;
+  }
+
+  .options-block {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 2rem;
+
+    .buttons {
+      margin-left: auto;
+    }
+  }
+
+  .icon-tab {
+    display: inline-block;
+    color: var(--primary);
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+:host {
+  .submit-btn {
+    min-width: 135px;
+    margin-left: 2rem;
+
+    color: var(--white);
+    border-radius: 4px;
+    background-color: var(--primary);
+  }
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
+:host ::ng-deep.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin-bottom: 0;
+}
+
+.mat-form-field {
+  margin-right: 2rem;
+  min-width: 250px !important;
+
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+
+  cursor: pointer;
+}
+
+table .mat-table,
+.cdk-table,
+mat-elevation-z8 {
+  width: 100%;
+  box-shadow: none;
+
+  tr.mat-header-row {
+    height: 0;
+  }
+
+  .mat-sort-header-container {
+    display: flex;
+  }
+
+  .mat-header-cell {
+    padding-bottom: 7px;
+    letter-spacing: 0.16px;
+    color: var(--gray);
+    font-weight: 500;
+    line-height: 14px;
+  }
+
+  .mat-column-state {
+    width: 20%;
+    text-align: center;
+  }
+
+  th.mat-header-cell:first-of-type,
+  td.mat-cell:first-of-type,
+  td.mat-footer-cell:first-of-type {
+    padding-left: 5px;
+  }
+
+  .th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-right: 0;
+  }
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  overflow: hidden;
+  height: 0;
+}
+
+mat-icon {
+  padding-right: 5px;
+
+  color: var(--gray);
+  font-size: 12px;
+}
+
+.mat-header-cell {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.loading-spinner {
+  width: 100px;
+  margin: 200px auto;
+
+  .mat-progress-spinner circle,
+  .mat-spinner circle {
+    stroke: var(--primary);
+  }
+}

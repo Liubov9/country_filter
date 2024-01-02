@@ -1,0 +1,122 @@
+<div class="container" *ngIf="!loading">
+  <div class="filter">
+    <p class="title">Countries</p>
+
+    <div>
+      <form [formGroup]="form" class="options-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Select Country</mat-label>
+          <mat-select
+            formControlName="countryName"
+            (selectionChange)="selectionChanged($event)"
+          >
+            <mat-option
+              *ngFor="let option of listOfCountries"
+              [value]="option.country"
+            >
+              {{ option.country }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Keywords</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+
+          <input
+            matInput
+            (input)="inputChange($event)"
+            formControlName="keywords"
+          />
+        </mat-form-field>
+
+        <div class="buttons">
+          <!-- <button
+            class="submit-btn"
+            mat-raised-button
+            (click)="applyFilter()"
+          >
+            <span>Get Started</span>
+          </button> -->
+
+          <button class="submit-btn" mat-raised-button (click)="onClickReset()">
+            <span>Reset</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="table-body">
+    <div>
+      <table
+        mat-table
+        [dataSource]="
+          dataSource.filteredData
+            | filterItems : { country: filterByCountry, name: filterByName }
+            | slice : 0 : 10
+        "
+        class="mat-elevation-z8"
+      >
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="tag-name">Name</th>
+          <td
+            mat-cell
+            *matCellDef="let item; let indexTagName = index"
+            class="bold-font"
+          >
+            {{ item.name }}
+          </td>
+        </ng-container>
+
+        <!-- Country Column -->
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef>Country</th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.country }}
+          </td>
+        </ng-container>
+
+        <!-- state Column -->
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>State</th>
+          <td mat-cell *matCellDef="let item">
+            {{ item["state-province"] ? item["state-province"] : "-" }}
+          </td>
+        </ng-container>
+
+        <!-- url Column -->
+        <ng-container matColumnDef="url">
+          <th mat-header-cell *matHeaderCellDef>URL</th>
+          <td mat-cell *matCellDef="let item">
+            <ng-container *ngFor="let url of item.web_pages">
+              <p>
+                <a class="hiperLink"> {{ url }}</a>
+                <mat-icon matPrefix (click)="openUrl(url)" class="icon-tab"
+                  >open_in_new</mat-icon
+                >
+              </p>
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColums"></tr>
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            let even = even;
+            let odd = odd;
+            columns: displayedColums
+          "
+          [ngClass]="{ even: even, odd: odd }"
+        ></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading" class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
